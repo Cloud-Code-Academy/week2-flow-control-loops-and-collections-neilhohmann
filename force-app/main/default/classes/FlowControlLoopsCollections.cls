@@ -14,7 +14,7 @@
 * in flow control, loops, and collections. By mastering these concepts, developers will be able to write more
 * efficient and effective code in their Salesforce projects.
 *
-* @author Your Name
+* @author Neil Hohmann
 */
 
 public with sharing class FlowControlLoopsCollections {
@@ -28,11 +28,7 @@ public with sharing class FlowControlLoopsCollections {
      * @return "Hello World!" if x greater than y, otherwise return null.
      */
     public static String helloWorld(Integer x, Integer y) {
-        if(x == null || y == null || x <= y){
-            return null;
-        } else {
-            return 'Hello World!';
-        }
+        return (x == null || y == null || x <= y) ? null : 'Hello World!';
     }
 
     /**
@@ -44,11 +40,7 @@ public with sharing class FlowControlLoopsCollections {
      * @return true if the person is eligible to vote, false otherwise.
      */
     public static Boolean votingEligibility(Integer age) {
-        if(age >= 18){
-            return true;
-        } else {
-            return false;
-        }
+        return age >= 18;
     }
 
     /**
@@ -60,16 +52,11 @@ public with sharing class FlowControlLoopsCollections {
      * @return The maximum of the two numbers, or null if either number is null.
      */
     public static Integer findMax(Integer num1, Integer num2) {
-        // Initialize largestNum as null
-        Integer largestNum = null;
-        if(num1 == null || num2 == null){
+        if (num1 == null || num2 == null) {
             return null;
-        } else if(num1 > num2 || num1 == num2){
-            largestNum = num1;
-        } else if(num2 > num1){
-            largestNum = num2;
+        } else {
+            return (num1 > num2 || num1 == num2) ? num1 : num2;
         }
-        return largestNum;
 }
 
     /**
@@ -80,15 +67,11 @@ public with sharing class FlowControlLoopsCollections {
      * @return A string indicating whether the number is "Positive", "Negative", or "Zero", or null if the number is null.
      */
     public static String checkNumber(Integer a) {
-        if(a == null) {
+        if (a == null) {
             return null;
-        } else if(a == 0){
-            return 'Zero';
-        } else if(a > 0){
-            return 'Positive';
         } else {
-            return 'Negative';
-        }
+            return a == 0 ? 'Zero' : a > 0 ? 'Positive' : 'Negative';
+        } 
     }
 
     /**
@@ -99,12 +82,10 @@ public with sharing class FlowControlLoopsCollections {
      * @return A string indicating whether the number is "Even" or "Odd", or null if the number is null.
      */
     public static String checkEvenOdd(Integer a) {
-        if(a == null){
+        if (a == null) {
             return null;
-        } else if(Math.mod(a,2) == 0){
-            return 'Even';
-        } else{
-            return 'Odd';
+        } else {
+            return (Math.mod(a,2) == 0) ? 'Even' : 'Odd';
         }
     }
 
@@ -115,12 +96,10 @@ public with sharing class FlowControlLoopsCollections {
      * @return A string indicating whether the input is "Empty", "Null", or "Contains Text".
      */
     public static String checkString(String a) {
-        if(a == null){
+        if (a == null) {
             return 'Null';
-        } else if(String.isEmpty(a)){ //isBlank returns true if null, empty, or white space
-            return 'Empty';
         } else {
-            return 'Contains Text';
+            return (String.isEmpty(a)) ? 'Empty' : 'Contains Text';
         }
     }
 
@@ -136,13 +115,13 @@ public with sharing class FlowControlLoopsCollections {
      * @return The grade for the given score.
      */
     public static String determineGrade(Integer score) {
-        if(score >= 90) {
+        if (score >= 90) {
             return 'A';
-        } else if(score >= 80){
+        } else if (score >= 80) {
             return 'B';
-        } else if(score >= 70){
+        } else if (score >= 70) {
             return 'C';
-        } else if(score > = 60){
+        } else if (score > = 60) {
             return 'D';
         } else {
             return 'F';
@@ -158,12 +137,11 @@ public with sharing class FlowControlLoopsCollections {
      */
     public static Integer sumUpToLimit(Integer intLimit) {
         Integer sum = 0;
-         for (Integer i=0; i<=intLimit; i++){
+         for (Integer i=1; i<=intLimit; i++) {
             sum += i;
          }
         return sum;
     }
-
     /**
      * Generate String "Hello World!" three times, with each occurrence separated by a semicolon.
      * Example: returnHelloWorld() should return "Hello World!; Hello World!; Hello World!; "
@@ -173,7 +151,7 @@ public with sharing class FlowControlLoopsCollections {
         // Initialize the result String
         String result = '';
         // Use a for loop to append 'Hello World!;' to the result string three times
-         for (Integer i=1; i<=3; i++){
+         for (Integer i=1; i<=3; i++) {
             result += 'Hello World!; ';
          }
         return result;
@@ -192,13 +170,10 @@ public with sharing class FlowControlLoopsCollections {
         // Initialize the result String
         String result = '';
         // Use a for loop to append inputString to the result string repeatCount times
-         for (Integer i=1; i<=repeatCount; i++){
-            result += inputString;
-            if(i != repeatCount){
-                result += '; ';
-            }
-         }
-        return result;
+        for (Integer i=1; i<=repeatCount; i++) {
+            result += inputString + '; ';
+        }
+        return result.removeEnd('; ');
     }
 
     /**
@@ -255,11 +230,7 @@ public with sharing class FlowControlLoopsCollections {
      * @return A Set of unique strings.
      */
     public static Set<String> createStringSet(List<String> inputList) {
-        // Create a new Set of strings
-        Set<String> stringSet;
-        //add strings to the set
-        stringSet = new Set<String>(inputList);
-        return stringSet;
+        return new Set<String>(inputList);
     }
 
     /**
@@ -271,12 +242,12 @@ public with sharing class FlowControlLoopsCollections {
         List<Integer> numbers = new List<Integer>{-1, 2, -3, 4, -5, 6}; //DO NOT CHANGE
         Integer sum = 0;
         // Loop through the list of integers
-        for(Integer num : numbers){
-            if(num > 0){
+        for(Integer num : numbers) {
+            if (num > 0) {
                 sum += num;
             }
-    }
-    return sum;
+        }
+        return sum;
 }
 
     /**
@@ -290,8 +261,8 @@ public with sharing class FlowControlLoopsCollections {
         // The variable to store the index of the word
         Integer index = -1;
         // Loop through the list of words
-        for(Integer i=0; i<words.size(); i++){
-            if(words[i] == wordToFind){
+        for(Integer i=0; i<words.size(); i++) {
+            if (words[i] == wordToFind) {
                 index = i;
                 // If the current word is the word to find, exit the loop
                 break;
@@ -310,9 +281,9 @@ public with sharing class FlowControlLoopsCollections {
         // The list of money in the wallet, represented in dollars and cents
         List<Decimal> moneyInWallet = new List<Decimal>{0.50, 10, 3.84, 24.60, 9.08, 50, 4.90}; //DO NOT CHANGE
         Decimal total = 0;
-        for(Decimal amt : moneyInWallet){
+        for(Decimal amt : moneyInWallet) {
             total += amt;
-            if(total > 40){
+            if (total > 40) {
                 break;
             }
         }
@@ -394,13 +365,13 @@ public with sharing class FlowControlLoopsCollections {
         // Initialize a list to store the names of high paid employees
         List<String> highSalaryEmployees = new List<String>();
         // Iterate over the Map using a for loop
-            for(String emply : employeeSalaries.keySet()){
-                // Check if the salary of the employee is more than 55000
-                if(employeeSalaries.get(emply) > 55000){
-                    // Add the employee to the list of high paid employees
-                    highSalaryEmployees.add(emply);
-                }
+        for(String emply : employeeSalaries.keySet()) {
+            // Check if the salary of the employee is more than 55000
+            if (employeeSalaries.get(emply) > 55000) {
+                // Add the employee to the list of high paid employees
+                highSalaryEmployees.add(emply);
             }
+        }
         // Return the list of high paid employees
         return highSalaryEmployees;
     }
